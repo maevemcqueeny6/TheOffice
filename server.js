@@ -14,27 +14,34 @@ app.use(express.json());
 
 // Star Wars Characters (DATA)
 // =============================================================
-var characters = [
+var employees = [
   {
-    routeName: "yoda",
-    name: "Yoda",
-    role: "Jedi Master",
-    age: 900,
-    forcePoints: 2000
+    routeName: "michaelscott",
+    name: "Michael Scott",
+    role: "Regional Manager",
+    age: 40,
+    productivity: 1
   },
   {
-    routeName: "darthmaul",
-    name: "Darth Maul",
+    routeName: "dwightschrute",
+    name: "Dwight Schrute",
     role: "Sith Lord",
-    age: 200,
-    forcePoints: 1200
+    age: 35,
+    productivity: 1200
   },
   {
-    routeName: "obiwankenobi",
-    name: "Obi Wan Kenobi",
-    role: "Jedi Master",
-    age: 55,
-    forcePoints: 1350
+    routeName: "jimhalpert",
+    name: "Jim Halpert",
+    role: "Assistant Regional Manager",
+    age: 30,
+    productivity: 1350
+  },
+  {
+    routeName: "meredithpalmer",
+    name: "Meredith Palmer",
+    role: "Saleswoman",
+    age: 45,
+    productivity: 10
   }
 ];
 
@@ -50,41 +57,41 @@ app.get("/add", function(req, res) {
   res.sendFile(path.join(__dirname, "add.html"));
 });
 
-// Displays all characters
-app.get("/api/characters", function(req, res) {
-  return res.json(characters);
+// Displays all employees
+app.get("/api/employees", function(req, res) {
+  return res.json(employees);
 });
 
 // Displays a single character, or returns false
-app.get("/api/characters/:character", function(req, res) {
-  var chosen = req.params.character;
+app.get("/api/employees/:employee", function(req, res) {
+  var chosen = req.params.employee;
 
   console.log(chosen);
 
-  for (var i = 0; i < characters.length; i++) {
-    if (chosen === characters[i].routeName) {
-      return res.json(characters[i]);
+  for (var i = 0; i < employees.length; i++) {
+    if (chosen === employees[i].routeName) {
+      return res.json(employees[i]);
     }
   }
 
   return res.json(false);
 });
 
-// Create New Characters - takes in JSON input
-app.post("/api/characters", function(req, res) {
+// Create New employees - takes in JSON input
+app.post("/api/employees", function(req, res) {
   // req.body hosts is equal to the JSON post sent from the user
   // This works because of our body parsing middleware
-  var newcharacter = req.body;
+  var newemployee = req.body;
 
-  // Using a RegEx Pattern to remove spaces from newCharacter
+  // Using a RegEx Pattern to remove spaces from newemployee
   // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
-  newcharacter.routeName = newcharacter.name.replace(/\s+/g, "").toLowerCase();
+  newemployee.routeName = newemployee.name.replace(/\s+/g, "").toLowerCase();
 
-  console.log(newcharacter);
+  console.log(newemployee);
 
-  characters.push(newcharacter);
+  employees.push(newemployee);
 
-  res.json(newcharacter);
+  res.json(newemployee);
 });
 
 // Starts the server to begin listening

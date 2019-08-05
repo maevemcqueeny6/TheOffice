@@ -16,10 +16,10 @@
 
   <div class="container">
     <div class="jumbotron">
-      <h1>Star Wars Express</h1>
-      <h3>The greatest resource in the galaxy for Star Wars statistics!</h3>
+      <h1>Dunder Mifflin - Scranton</h1>
+      <h3>Allow me to introduce you to the best paper salesmen in your area.</h3>
       <hr>
-      <a href="/add"><button class="btn btn-danger btn-lg"><span class="fa fa-plus"></span> Add New Character</button></a>
+      <a href="/add"><button class="btn btn-danger btn-lg"><span class="fa fa-plus"></span> Add New Employee</button></a>
     </div>
     <div class="row">
 
@@ -27,14 +27,13 @@
 
         <div class="card mb-4">
           <div class="card-header">
-            <h3><strong>Character Search</strong></h3>
+            <h3><strong>Employee Search</strong></h3>
           </div>
           <div class="card-body">
-            <input type="text" id="character-search" class="form-control">
+            <input type="text" id="employee-search" class="form-control">
             <br>
             <div class="text-right">
-              <button type="submit" class="btn btn-primary btn-md" id="search-btn"><span class="fa fa-search"></span> Search
-                Your Feelings. You know it is true.</button>
+              <button type="submit" class="btn btn-primary btn-md" id="search-btn"><span class="fa fa-search"></span> Get in contact today!</button>
 
             </div>
           </div>
@@ -42,14 +41,14 @@
 
         <div class="card">
           <div class="card-header">
-            <h3><strong>Character Statistics</strong></h3>
+            <h3><strong>Employee Statistics</strong></h3>
           </div>
           <div class="card-body">
-            <h2 id="name">Yoda</h2>
+            <h2 id="name">Michael Scott</h2>
             <div id="stats">
-              <h3><strong>Role:</strong> <span id="role">Jedi Master</span></h3>
-              <h3><strong>Age:</strong> <span id="age">900</span></h3>
-              <h3><strong>Force Points:</strong> <span id="force-points">2000</span></h3>
+              <h3><strong>Role:</strong> <span id="role">Regional Manager</span></h3>
+              <h3><strong>Age:</strong> <span id="age">40</span></h3>
+              <h3><strong>Productivity:</strong> <span id="productivity">1</span></h3>
             </div>
           </div>
         </div>
@@ -59,23 +58,23 @@
 
   <script type="text/javascript">
     $("#search-btn").on("click", function() {
-      var searchedCharacter = $("#character-search").val().trim();
+      var searchedEmployee = $("#employee-search").val().trim();
 
       // Using a RegEx Pattern to remove spaces from searchedCharacter
       // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
-      searchedCharacter = searchedCharacter.replace(/\s+/g, "").toLowerCase();
+      searchedEmployee = searchedEmployee.replace(/\s+/g, "").toLowerCase();
 
-      $.get("/api/characters/" + searchedCharacter, function(data) {
+      $.get("/api/employees/" + searchedEmployee, function(data) {
         console.log(data);
         if (data) {
           $("#stats").show();
           $("#name").text(data.name);
           $("#role").text(data.role);
           $("#age").text(data.age);
-          $("#force-points").text(data.forcePoints);
+          $("#productivity").text(data.productivity);
         }
         else {
-          $("#name").text("The force is not strong with this one. Your character was not found.");
+          $("#name").text("does not work here. Would you still like to buy a ream of paper?");
           $("#stats").hide();
         }
       });

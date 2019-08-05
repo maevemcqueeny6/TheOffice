@@ -14,10 +14,10 @@
 
   <div class="container">
     <div class="jumbotron">
-      <h1>Star Wars Express</h1>
-      <h3>The greatest resource in the galaxy for Star Wars statistics!</h3>
+      <h1>Dunder Mifflin - Scranton</h1>
+      <h3>Allow me to introduce you to the best paper salesmen in your area.</h3>
       <hr>
-      <a href="/"><button class="btn btn-danger btn-lg"><span class="fa fa-eye"></span> View Characters</button></a>
+      <a href="/"><button class="btn btn-danger btn-lg"><span class="fa fa-eye"></span> View Employees</button></a>
     </div>
     <div class="row">
 
@@ -25,7 +25,7 @@
 
         <div class="card">
           <div class="card-header">
-            <h3><strong>Add Characters</strong></h3>
+            <h3><strong>Add Employee</strong></h3>
           </div>
           <div class="card-body">
             <form method="POST" role="form">
@@ -46,14 +46,14 @@
               </div>
 
               <div class="form-group">
-                <label for="force-points">Force Points</label>
-                <input type="text" class="form-control" id="force-points">
+                <label for="productivity">Productivity</label>
+                <input type="text" class="form-control" id="productivity">
               </div>
 
             </form>
             <br>
             <div class="text-right">
-              <button type="submit" class="btn btn-primary btn-md" id="add-btn"><span class="fa fa-fire"></span> Add to the Force</button>
+              <button type="submit" class="btn btn-primary btn-md" id="add-btn"><span class="fa fa-fire"></span> Add to the Scranton branch</button>
             </div>
           </div>
         </div>
@@ -66,18 +66,18 @@
     // Question: What does this code do?
     $("#add-btn").on("click", function(event) {
       event.preventDefault();
-      var newCharacter = {
+      var newEmployee = {
         name: $("#name").val().trim(),
         role: $("#role").val().trim(),
         age: $("#age").val().trim(),
-        forcePoints: $("#force-points").val().trim()
+        productivity: $("#productivity").val().trim()
       };
 
       // Question: What does this code do??
-      $.post("/api/characters", newCharacter)
+      $.post("/api/employees", newEmployee)
         .then(function(data) {
           console.log("add.html", data);
-          alert("Adding character...");
+          alert("Adding employee...");
         });
     });
   </script>
